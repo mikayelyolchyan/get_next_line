@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyolchy <miyolchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 18:28:53 by miyolchy          #+#    #+#             */
-/*   Updated: 2025/02/16 21:14:14 by miyolchy         ###   ########.fr       */
+/*   Created: 2025/02/16 20:58:01 by miyolchy          #+#    #+#             */
+/*   Updated: 2025/02/16 21:12:12 by miyolchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	*clear_remainder(char *remainder)
 {
@@ -70,38 +70,17 @@ static char	*read_file(int fd, char *remainder)
 
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
+	static char	*remainder[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
-	remainder = read_file(fd, remainder);
-	if (!remainder)
+	remainder[fd] = read_file(fd, remainder[fd]);
+	if (!remainder[fd])
 		return (NULL);
-	line = extract_line(remainder);
+	line = extract_line(remainder[fd]);
 	if (!line)
-		return (remainder = clear_remainder(remainder));
-	remainder = keep_remainder(remainder);
+		return (remainder[fd] = clear_remainder(remainder[fd]));
+	remainder[fd] = keep_remainder(remainder[fd]);
 	return (line);
 }
-
-//# include <fcntl.h>
-//
-// int main(void)
-// {
-// 	int fd = open("read_error.txt", O_RDONLY);
-
-// 	if (fd == -1)
-// 	{
-// 		printf("Error\n");
-// 		return (1);
-// 	}
-// 	char *str;
-// 	while ((str = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 	}
-// 	close (fd);
-// 	return (0);
-// }
