@@ -4,10 +4,11 @@
 
   <!-- Project Name -->
   <h1>Get Next Line</h1>
-
+  
   <!-- Short Description -->
   <p align="center">
 	  <b>42 Yerevan Get Next Line</b><br>
+	  <b>(francinette --strict full OK)</b><br>
   </p>
 
   <h3>
