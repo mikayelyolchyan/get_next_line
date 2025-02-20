@@ -24,7 +24,7 @@
 
 > _The aim of this project is to make you code a function that returns a line, read from a file descriptor._
 
-For detailed information, refer to the [**subject of this project**](en.subject.pdf).
+For detailed information, refer to the [**subject of this project**](subject/en.subject.pdf).
 
 	🚀 TLDR: This task is crucial to understand for a future programmer, since much of the 
 		 time is based on manipulating files for data management and persistence.
